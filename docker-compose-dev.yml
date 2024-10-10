@@ -1,0 +1,31 @@
+
+version: '3'
+
+# defining these two will put them on same network
+
+services:
+  web-app:
+    restart: always
+    #   . does  not work, cuz we have Dockerfile.dev, not Dockerfile
+    build:
+      context: .   # since we didn't nest it, . works, else put the nested dir
+      dockerfile: Dockerfile.dev
+    # the - indicates an array
+    ports:
+      # first num is host, second is container  8981:8981?  this is for OUR machine, not so containers can talk.
+      # ME connect to localhost:4001, it goes to 8981 on container, container talks to redis:6379
+      - "3002:3000"
+    #VOLUMES
+    volumes:
+      - /app/node_modules
+      - .:/app  # current dir to /app in container
+
+  tests:
+    build:
+      context: .   # since we didn't nest it, . works, else put the nested dir
+      dockerfile: Dockerfile.dev
+
+    volumes:
+      - /app/node_modules
+      - .:/app  # current dir to /app in container
+    command: ["npm", "run", "test"]
