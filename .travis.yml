@@ -1,0 +1,16 @@
+sudo: required
+
+services:
+  - docker
+
+before_install:
+  # COULD NAME the tag anything you want, it only used here.
+  - docker build -t kevmonstah/docker-repo-2 -f Dockerfile.dev .
+
+# stuff to run suite.  travis assumes that this exits just fine.
+# hmm. npm run tests waits for you to do more input, never exiting.
+# travis will not figure this out.
+# this updated with the -e CI=true instead of npm run test -- --coverage
+script:
+  - docker run -e CI=true kevmonstah/docker-repo-2 npm run test
+
