@@ -15,6 +15,9 @@ RUN npm run build
 # the 'FROM' statement, one per section, marks a new phase
 FROM nginx
 
+# am not at all sure this is necessary, as app worked already and deployed.
+# EXPOSE 80  this is NOT NEEDED now.  onld "Linux 1" platform it was, but "Linux 2", it is not.
+
 # copy from build, and to correct place served up by nginx
 COPY --from=builder /app/build  /usr/share/nginx/html
 

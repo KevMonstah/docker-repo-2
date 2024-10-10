@@ -12,6 +12,7 @@ function App() {
         <h4>Hope For</h4>
         <h5>EVERYTHING to go my way!!!</h5>
         <h6>And maybe it will start to.  Rocky's speech.</h6>
+        <h6>Got two to startr with.  Need more.</h6>
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
