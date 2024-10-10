@@ -14,3 +14,18 @@ before_install:
 script:
   - docker run -e CI=true kevmonstah/docker-repo-2 npm run test
 
+# use your instructions to auto deploy here
+deploy:
+    provider: elasticbeanstalk
+    region: "us-west-2"
+    app: "frontend"
+    env: "Frontend-env"
+    bucket_name: "elasticbeanstalk-us-west-2-443370716768"
+    bucket_path: "frontend"  # by default, it's the same as 'app'
+    on:
+      branch: main  #only deploy when changes on main branch.
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: "$AWS_SECRET_KEY"
+
+
+# http://frontend-env.eba-b4tugse3.us-west-2.elasticbeanstalk.com/
